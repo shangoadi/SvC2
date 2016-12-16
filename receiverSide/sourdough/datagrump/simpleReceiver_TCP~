@@ -1,0 +1,16 @@
+
+sudo killall receiver
+sudo killall sender
+sudo killall python
+sudo ./kill_ipc.sh
+sudo python ./cleaner.py
+
+sudo python ./echoServer.py $1 /89898& 
+sudo python ./echoServer.py $2 /89899& 
+
+sudo python ./tunproxy.py -s 123  > sOPT&
+sleep 2
+sudo ifconfig toto0 192.168.17.22
+sudo ip route add 192.168.17.0/24 dev toto0
+
+

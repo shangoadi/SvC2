@@ -1,0 +1,5 @@
+#make
+sudo killall sender
+sudo killall receiver
+sudo ./sender 50.78.21.22 1254 debug&
+sudo ./receiver 1255&

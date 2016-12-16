@@ -1,0 +1,108 @@
+#!/bin/bash
+
+#for the wifi wlan0
+wlan0="$(ifconfig wlan0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+subnetwlan0=`echo $wlan0 | cut -d"." -f1-3`
+#del
+sudo ip rule del from $wlan0/24 lookup 1
+#sudo ip rule del from 10.10.10.11/32 lookup 1
+sudo ip route del default via $subnetwlan0.1 dev wlan0 table 1
+sudo route del default gw $subnetwlan0.1 dev wlan0
+#add
+sudo ip rule add from $wlan0/24 lookup 1
+#sudo ip rule add from 10.10.10.11/32 lookup 1
+sudo ip route add default via $subnetwlan0.1 dev wlan0 table 1
+sudo route add default gw $subnetwlan0.1 dev wlan0
+
+#for the wifi wlan1
+wlan1="$(ifconfig wlan1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+subnetwlan1=`echo $wlan1 | cut -d"." -f1-3`
+#del
+sudo ip rule del from $wlan1/16 lookup 6
+#sudo ip rule del from 10.10.10.11/32 lookup 1
+sudo ip route del default via $subnetwlan1.1 dev wlan1 table 6
+sudo route del default gw $subnetwlan1.1 dev wlan1
+#add
+sudo ip rule add from $wlan1/16 lookup 6
+#sudo ip rule add from 10.10.10.11/32 lookup 1
+sudo ip route add default via $subnetwlan1.1 dev wlan1 table 6
+sudo route add default gw $subnetwlan1.1 dev wlan1
+
+#for the eth0
+eth0="$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+subneteth0=`echo $eth0 | cut -d"." -f1-3`
+#del
+sudo ip rule del from $eth0/24 lookup 2
+#sudo ip rule del from 10.10.10.10/32 lookup 2
+sudo ip route del default via $subneteth0.1 dev eth0 table 2
+sudo route del default gw $subneteth0.1 dev eth0
+#add
+sudo ip rule add from $eth0/24 lookup 2
+#sudo ip rule add from 10.10.10.10/32 lookup 2
+sudo ip route add default via $subneteth0.1 dev eth0 table 2
+sudo route add default gw $subneteth0.1 dev eth0
+
+#for the eth1
+eth1="$(ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+subneteth1=`echo $eth1 | cut -d"." -f1-3`
+#del
+sudo ip rule del from $eth1/24 lookup 212
+sudo ip route del default via $subneteth1.1 dev eth1 table 212
+sudo route del default gw $subneteth1.1 dev eth1
+#add
+sudo ip rule add from $eth1/24 lookup 212
+sudo ip route add default via $subneteth1.1 dev eth1 table 212
+sudo route add default gw $subneteth1.1 dev eth1
+
+#for wwan0
+wwan0="$(ifconfig wwan0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+subnetwwan0=`echo $wwan0 | cut -d"." -f1-3`
+#del
+sudo ip rule del from $wwan0/24 lookup 10
+sudo ip route del default via $subnetwwan0.253 dev wwan0 table 10
+sudo route del default gw $subnetwwan0.253 dev wwan0
+#add
+sudo ip rule add from $wwan0/24 lookup 10
+sudo ip route add default via $subnetwwan0.253 dev wwan0 table 10
+sudo route add default gw $subnetwwan0.253 dev wwan0
+
+#sanity check
+
+echo "sanity check"
+if ping 8.8.8.8 -I wwan0 -c1 &> /dev/null
+then
+  echo "wwan0 works"
+else
+  echo "wwan0 fails"
+fi
+if ping 8.8.8.8 -I eth0 -c1 &> /dev/null
+then
+  echo "eth0 works"
+else
+  echo "eth0 fails"
+fi
+if ping 8.8.8.8 -I eth1 -c1 &> /dev/null
+then
+  echo "eth1 works"
+else
+  echo "eth1 fails"
+fi
+if ping 8.8.8.8 -I wlan0 -c1 &> /dev/null
+then
+  echo "wlan0 works"
+else
+  echo "wlan0 fails"
+fi
+if ping 8.8.8.8 -I wlan1 -c1 &> /dev/null
+then
+  echo "wlan1 works"
+else
+  echo "wlan1 fails"
+fi
+
+if ping 192.168.17.22 -c1 &> /dev/null
+then 
+  echo "toto works"
+else
+  echo "toto fails"
+fi

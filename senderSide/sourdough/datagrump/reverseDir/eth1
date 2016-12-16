@@ -1,0 +1,38 @@
+PING 50.78.21.22 (50.78.21.22) from 172.20.10.3 eth1: 56(84) bytes of data.
+64 bytes from 50.78.21.22: icmp_seq=1 ttl=51 time=155 ms
+64 bytes from 50.78.21.22: icmp_seq=2 ttl=51 time=107 ms
+64 bytes from 50.78.21.22: icmp_seq=3 ttl=51 time=97.8 ms
+64 bytes from 50.78.21.22: icmp_seq=4 ttl=51 time=131 ms
+64 bytes from 50.78.21.22: icmp_seq=5 ttl=51 time=201 ms
+64 bytes from 50.78.21.22: icmp_seq=6 ttl=51 time=230 ms
+64 bytes from 50.78.21.22: icmp_seq=7 ttl=51 time=336 ms
+64 bytes from 50.78.21.22: icmp_seq=8 ttl=51 time=283 ms
+64 bytes from 50.78.21.22: icmp_seq=9 ttl=51 time=286 ms
+64 bytes from 50.78.21.22: icmp_seq=10 ttl=51 time=308 ms
+64 bytes from 50.78.21.22: icmp_seq=11 ttl=51 time=309 ms
+64 bytes from 50.78.21.22: icmp_seq=12 ttl=51 time=261 ms
+64 bytes from 50.78.21.22: icmp_seq=13 ttl=51 time=329 ms
+64 bytes from 50.78.21.22: icmp_seq=14 ttl=51 time=325 ms
+64 bytes from 50.78.21.22: icmp_seq=15 ttl=51 time=299 ms
+64 bytes from 50.78.21.22: icmp_seq=16 ttl=51 time=302 ms
+64 bytes from 50.78.21.22: icmp_seq=17 ttl=51 time=167 ms
+64 bytes from 50.78.21.22: icmp_seq=18 ttl=51 time=213 ms
+64 bytes from 50.78.21.22: icmp_seq=19 ttl=51 time=251 ms
+64 bytes from 50.78.21.22: icmp_seq=20 ttl=51 time=296 ms
+64 bytes from 50.78.21.22: icmp_seq=21 ttl=51 time=289 ms
+64 bytes from 50.78.21.22: icmp_seq=22 ttl=51 time=288 ms
+64 bytes from 50.78.21.22: icmp_seq=23 ttl=51 time=293 ms
+64 bytes from 50.78.21.22: icmp_seq=24 ttl=51 time=298 ms
+64 bytes from 50.78.21.22: icmp_seq=25 ttl=51 time=309 ms
+64 bytes from 50.78.21.22: icmp_seq=26 ttl=51 time=321 ms
+64 bytes from 50.78.21.22: icmp_seq=27 ttl=51 time=304 ms
+64 bytes from 50.78.21.22: icmp_seq=28 ttl=51 time=262 ms
+64 bytes from 50.78.21.22: icmp_seq=29 ttl=51 time=294 ms
+64 bytes from 50.78.21.22: icmp_seq=30 ttl=51 time=131 ms
+64 bytes from 50.78.21.22: icmp_seq=31 ttl=51 time=92.5 ms
+64 bytes from 50.78.21.22: icmp_seq=32 ttl=51 time=91.7 ms
+64 bytes from 50.78.21.22: icmp_seq=33 ttl=51 time=99.7 ms
+
+--- 50.78.21.22 ping statistics ---
+33 packets transmitted, 33 received, 0% packet loss, time 32037ms
+rtt min/avg/max/mdev = 91.762/241.654/336.195/81.428 ms

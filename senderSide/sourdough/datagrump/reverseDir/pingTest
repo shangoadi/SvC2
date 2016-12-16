@@ -1,0 +1,2 @@
+sudo ping 50.78.21.22 -I wwan0 -i1 -c150 > wwan0 &
+sudo ping 50.78.21.22 -I eth1 -i1 -c150 > eth1 

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+destinationIP = 50.78.21.22
+
+destionationPort1=5001
+destionationPort1=5002
+
+port1=5001
+port2=5002
+
+sudo killall sender
+sudo killall receiver
+sudo killall python
+sudo ./kill_ipc.sh
+#sudo python ./IPC/cleaner.py	
+
+#sudo ./receiver 1255&
+
+sudo python ./tunproxy.py -c 50.78.21.22:1231 &
+sleep 2
+#setup the tunnel
+sudo ifconfig toto0 192.168.17.21 txqueuelen 1000000
+sudo ip route add 192.168.17.0/24 dev toto0
+sleep 1
+
+# wlan0IP="$(ifconfig wlan0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+# sudo ./sender 50.78.21.22 1256 debug 1112 $wlan0IP 5091 /68681 /89898 /CL2 /CL2T&
+
+# wlan1IP="$(ifconfig wlan1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+# sudo ./sender 50.78.21.22 1257 debug 1111 $wlan1IP 5091 /68682 /89899 /CL1 /CL1T&
+
+
+# eth0IP="$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+# sudo ./sender 50.78.21.22 1257 debug 1111 $eth0IP 5091 /68682 /89899 /CL1 /CL1T&
+
+wwan0IP="$(ifconfig wwan0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+sudo ./sender 50.78.21.22 1256 debug 1112 $wwan0IP 5092 /68682 /89899 /CL2 /CL2T&
+
+eth1IP="$(ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')"
+sudo ./sender 50.78.21.22 1257 debug 1111 $eth1IP 5091 /68681 /89898  /CL1 /CL1T&
+
+

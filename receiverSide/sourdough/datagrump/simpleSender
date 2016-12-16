@@ -1,0 +1,16 @@
+sudo killall sender
+sudo killall receiver
+sudo killall python
+sudo ./kill_ipc.sh
+
+sudo ./receiver 1255&
+
+sudo python ./tunproxy.py -c 50.78.21.22:1231 &
+sleep 2
+#setup the tunnel
+sudo ifconfig toto0 192.168.17.21
+sudo ip route add 192.168.17.0/24 dev toto0
+sleep 1
+
+sudo ./sender 50.78.21.22 1254&
+

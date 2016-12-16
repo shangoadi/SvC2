@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+"""
+server
+"""
+
+import socket
+import posix_ipc
+TCP_CONGESTION = 13
+host = ''
+
+
+print 'Number of arguments:', len(sys.argv), 'arguments.'
+print 'Argument List:', str(sys.argv)
+
+port = int(sys.argv[1])
+backlog = 1
+
+
+mqnum2= "/89898"
+mq2 = posix_ipc.MessageQueue(mqnum2, posix_ipc.O_CREAT,0666,10,1700)
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.setsockopt(socket.IPPROTO_TCP, TCP_CONGESTION, 'cubic')
+s.bind((host,port))
+s.listen(backlog)
+
+client, address = s.accept()
+pktCount = 0
+while 1:
+    data = client.recv(1238, socket.MSG_WAITALL)
+    print pktCount
+    pktCount = pktCount + 1
+    print "len : " + str(len(data))
+    mq2.send(data)
+
